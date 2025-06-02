@@ -2,6 +2,8 @@
 
 Um jogo de corrida de cavalos em Python, onde você compete contra uma IA treinada com Deep Q-Learning (PyTorch). O jogo é exibido em tela dividida, mostrando o progresso do jogador e da IA simultaneamente.
 
+> **Este projeto foi baseado no repositório original [py_horse_racing do TekiChan](https://github.com/tekichan/py_horse_racing/).**
+
 ## Funcionalidades
 - **Tela dividida:** Jogador e IA correm em pistas separadas, exibidas na mesma janela.
 - **Obstáculos dinâmicos:** Animais e tubos aparecem aleatoriamente como obstáculos.
