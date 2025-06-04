@@ -112,7 +112,8 @@ class ReplayBuffer:
     def push(self, *args):
         self.buffer.append(tuple(args))
     def sample(self, batch_size):
-        indices = np.random.choice(len(self.buffer), batch_size, replace=False)
+        indices = np.random.choice(len(self.buffer), 
+                            batch_size, replace=False)
         batch = [self.buffer[idx] for idx in indices]
         return map(np.array, zip(*batch))
     def __len__(self):
@@ -245,7 +246,7 @@ import random
 
 class MultiAgent:
     def __init__(self, num_agents):
-        state_size = 8  # Corrigido: agora o vetor de estado tem 8 entradas
+        state_size = 8 
         self.agents = [QNetwork(state_size, len(ACTIONS)).to(DEVICE) for _ in range(num_agents)]
         self.optimizers = [optim.Adam(agent.parameters(), lr=0.001) for agent in self.agents]
         self.replay_buffers = [ReplayBuffer(REPLAY_BUFFER_SIZE) for _ in range(num_agents)]
@@ -262,7 +263,7 @@ class MultiAgent:
         if len(buffer) < BATCH_SIZE:
             return
         states, actions, rewards, next_states, dones = buffer.sample(BATCH_SIZE)
-        # Corrige: garante que todos os arrays tenham o mesmo tamanho (BATCH_SIZE)
+        
         states = np.array(states)
         actions = np.array(actions)
         rewards = np.array(rewards)
@@ -780,7 +781,7 @@ def main():
                     # Draw info
                 draw_text(f'Episódio: {episode + 1}/{max_episodes}  |  Treinamento: {count}', small_font, WHITE, 20, 20)
                 draw_text(f'Passos: {steps}', small_font, WHITE, 20, 60)
-                draw_text('Pressione S para alternar Sonar/Colisão', small_font, WHITE, 20, SCREEN_HEIGHT - 40)
+                draw_text('Pressione S para alternar Radar/Colisão', small_font, WHITE, 20, SCREEN_HEIGHT - 40)
                 draw_text('Pressione X para alternar cores dos agentes', small_font, WHITE, 20, SCREEN_HEIGHT - 80)
                 draw_text('Pressione H para alternar Hitboxes', small_font, WHITE, 20, SCREEN_HEIGHT - 120)
                 # Real-Time Training Visualization
